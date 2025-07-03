@@ -10,15 +10,6 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 // Auto-update footer year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Contact popup toggle
-document.getElementById("contactBtn").addEventListener("click", () => {
-  document.getElementById("popup").classList.remove("hidden");
-});
-
-document.getElementById("closePopup").addEventListener("click", () => {
-  document.getElementById("popup").classList.add("hidden");
-});
-// ...existing code...
 
 // Highlight active nav tab
 document.addEventListener('DOMContentLoaded', function () {
@@ -43,3 +34,48 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+// Carousel functionality
+(function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  let current = 0;
+  let timer;
+
+  function showSlide(idx) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === idx);
+    });
+    current = idx;
+  }
+
+  function nextSlide() {
+    showSlide((current + 1) % slides.length);
+  }
+
+  function prevSlide() {
+    showSlide((current - 1 + slides.length) % slides.length);
+  }
+
+if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetTimer();
+    });
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetTimer();
+    });
+  }
+
+  function autoPlay() {
+    timer = setInterval(nextSlide, 4000);
+  }
+  function resetTimer() {
+    clearInterval(timer);
+    autoPlay();
+  }
+  showSlide(0);
+  autoPlay();
+})();

@@ -155,9 +155,15 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: darkcyan !important;
+  background: darkgoldenrod;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+footer {
+  background: darkgoldenrod;
+  color: #fff;
+  padding: 1.5rem 0;
+  text-align: center;
 }
 
 .menu-icon {
@@ -165,28 +171,47 @@ header {
   cursor: pointer;
   padding: 10px;
   z-index: 101;
+  position: relative;
+  width: 32px;
+  height: 32px;
 }
 .menu-icon span {
   display: block;
-  width: 25px;
+  width: 28px;
   height: 3px;
-  margin: 5px 0;
+  margin: 6px 0;
   background: white;
   border-radius: 3px;
   transition: all 0.3s;
+  position: relative;
 }
 
+/* Hamburger to X animation */
+#menu-toggle:checked + .menu-icon span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-toggle:checked + .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .menu-icon span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Show menu icon on mobile */
 @media (max-width: 991.98px) {
   .menu-icon {
     display: block;
   }
+}
+
+@media (max-width: 991.98px) {
   .header-nav {
     position: fixed;
     top: 0;
     right: -100%;
     width: 70%;
     height: 100vh;
-    background: rgba(0, 139, 139, 0.97);
+    background: rgba(218, 165, 32, 0.85); /* transparent darkgoldenrod */
     padding-top: 80px;
     transition: right 0.4s;
     box-shadow: -5px 0 15px rgba(0,0,0,0.2);
@@ -214,11 +239,6 @@ header {
     border-radius: 6px;
     transition: background 0.2s, color 0.2s;
   }
-  .header-nav ul li a:hover,
-  .header-nav ul li a.active {
-    background: #e2f3ef;
-    color: #bb0986 !important;
-  }
 }
 
 @media (max-width: 700px) {
@@ -227,5 +247,93 @@ header {
   }
   .logo-slogan-text .slogan {
     font-size: 0.9rem !important;
+  }
+}
+
+/* Add hover effect for nav links on all screen sizes */
+.header-nav ul li a:hover,
+.header-nav ul li a.active {
+  background: none;
+  color: #057d9b !important;
+  border-radius: 0;
+  border-bottom: 2.5px solid #057d9b;
+  transition: border-bottom 0.2s, color 0.2s;
+}
+
+/* Carousel Styles */
+.service-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 2rem auto;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: #fff;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+}
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-slide.active {
+  display: flex;
+}
+.carousel-slide img {
+  width: 100%;
+  max-width: 550px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+.service-carousel {
+  max-width: 520px;      
+}
+.carousel-caption {
+  background: rgba(34, 23, 26, 0.12);
+  color: #ecd8e0;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  margin-top: 0.7rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: #fff;
+  box-shadow: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+  padding: 0 8px;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+.carousel-btn.next {
+  right: 10px;
+}
+@media (max-width: 600px) {
+  .service-carousel {
+    max-width: 98vw;
+  }
+  .carousel-slide img {
+    height: 180px;      
+    max-width: 98vw;
   }
 }

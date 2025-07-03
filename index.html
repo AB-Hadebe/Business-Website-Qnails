@@ -21,8 +21,8 @@
                 </div>
             </div>
             <!-- Hamburger menu for mobile -->
-            <input type="checkbox" id="menu-toggle" class="d-none">
-            <label for="menu-toggle" class="menu-icon d-md-none">
+            <input type="checkbox" id="menu-toggle" hidden>
+            <label for="menu-toggle" class="menu-icon">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -30,31 +30,42 @@
             <nav class="header-nav">
                 <ul class="nav">
                     <li class="nav-item"><a href="#about" class="nav-link text-white">About Us</a></li>
-                    <li class="nav-item"><a href="#services" class="nav-link text-white">Our Services</a></li>
                     <li class="nav-item"><a href="#gallery" class="nav-link text-white">Gallery</a></li>
+                    <li class="nav-item"><a href="#pricelist" class="nav-link text-white">Pricelist</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link text-white">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <div class="logo-bg mb-4">
-        <img src="images/nail logo.jpg" alt="Nail Logo">
+    <!-- Carousel replacing logo-bg -->
+    <div class="service-carousel mb-4">
+        <div class="carousel-track">
+            <div class="carousel-slide active">
+                <img src="images/ntech.webp" alt="Manicure">
+                <div class="carousel-caption">Manicure – Pamper your hands with our expert care!</div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/qhair.webp" alt="Pedicure">
+                <div class="carousel-caption">Hairdo – Get your hair styled and dazzling.</div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/pedi.jpg" alt="Nail Art">
+                <div class="carousel-caption">Nail Art – Creative designs for every occasion.</div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/tools.webp" alt="Combo Package">
+                <div class="carousel-caption">Combo Package – The ultimate self-care experience.</div>
+            </div>
+        </div>
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
     </div>
+    <!-- End Carousel -->
 
     <section id="about" class="container mb-5">
         <h2 class="text-center mb-3">About Us</h2>
         <p class="lead text-center">At Qibe_Nailed_It, we blend elegance and wellness for the ultimate self-care experience. Our expert stylists and nail technicians are here to pamper you with precision and flair.</p>
-    </section>
-
-    <section id="services" class="container mb-5">
-        <h2 class="text-center mb-4">Services</h2>
-        <ul class="service-list row justify-content-center">
-            <li class="col-6 col-md-3 mb-3">Hair Styling – R250</li>
-            <li class="col-6 col-md-3 mb-3">Manicure – R150</li>
-            <li class="col-6 col-md-3 mb-3">Pedicure – R180</li>
-            <li class="col-6 col-md-3 mb-3">Combo Package – R500</li>
-        </ul>
     </section>
 
     <section id="gallery" class="container mb-5">
@@ -66,21 +77,30 @@
         </div>
     </section>
 
+        <section id="pricelist" class="container mb-5">
+        <h2 class="text-center mb-3">Pricelist</h2>
+        <div class="text-center">
+            <p>Explore our range of services and find the perfect pampering package for you.</p>
+            <ul class="list-unstyled">
+                <li>Manicure: R250</li>
+                <li>Hair braiding: From R100</li>
+                <li>Pedicure: From R150</li>
+                <li>Combo Package: R500</li>
+            </ul>
+        </div>
+    </section>
+
     <section id="contact" class="container mb-5">
         <h2 class="text-center mb-3">Contact Us</h2>
         <div class="text-center">
             <p>Email: <a href="mailto:bookings@qibe.co.za" class="text-decoration-none">bookings@qibe.co.za</a></p>
             <p>Phone: <a href="tel:+27101234567" class="text-decoration-none">+27 10 123 4567</a></p>
             <p>Visit us in Bethlehem – we can’t wait to welcome you!</p>
-            <button id="contactBtn" class="btn btn-warning mt-2">Quick Contact</button>
-            <div id="popup" class="hidden mt-3">
-                <p>📞 Call us at +27 10 123 4567 or WhatsApp us now!</p>
-                <button id="closePopup" class="btn btn-secondary">Close</button>
-            </div>
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
+
+    <footer>
         <p>&copy; <span id="year"></span> Qibe_nailed_it. All rights reserved.</p>
     </footer>
 
