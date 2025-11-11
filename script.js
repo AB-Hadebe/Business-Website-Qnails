@@ -79,3 +79,89 @@ if (nextBtn && prevBtn) {
   showSlide(0);
   autoPlay();
 })();
+
+// Booking form submission
+// User-driven approach: show WhatsApp or Email link after booking
+
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('bookingForm');
+  const bookNowBtn = document.getElementById('bookNowBtn');
+  const contactRadios = document.getElementsByName('contactMethod');
+  // Enable Book Now only if a contact method is selected
+  contactRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      bookNowBtn.disabled = !Array.from(contactRadios).some(r => r.checked);
+    });
+  });
+  // Add a div for contact actions if not present
+  let contactActions = document.getElementById('contactActions');
+  if (!contactActions) {
+    contactActions = document.createElement('div');
+    contactActions.id = 'contactActions';
+    contactActions.className = 'mt-3';
+    form.appendChild(contactActions);
+  }
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const service = document.getElementById('service').value;
+      const date = document.getElementById('date').value;
+      // Get selected contact method
+      let contactMethod = Array.from(contactRadios).find(r => r.checked)?.value;
+      if (!contactMethod) {
+        document.getElementById('bookingMsg').textContent = "Please select a contact method.";
+        return;
+      }
+      let msg = `Hi, I would like to book a ${service} on ${date}. My name is ${name}. My email is ${email}.`;
+      if (contactMethod === 'whatsapp') {
+        window.open(`https://wa.me/27812821259?text=${encodeURIComponent(msg)}`, '_blank');
+        document.getElementById('bookingMsg').textContent = "Booking submitted! Please send your WhatsApp message.";
+        contactActions.innerHTML = '';
+      } else {
+        // Automatically open mail client to site owner's email with user's details
+        const emailSubject = encodeURIComponent(`Booking Request - ${service}`);
+        const emailBody = encodeURIComponent(`Hello,\n\nI would like to book:\n\nName: ${name}\nUser Email: ${email}\nService: ${service}\nDate: ${date}\n\nThank you!`);
+        window.location.href = `mailto:bookings@qibe.co.za?subject=${emailSubject}&body=${emailBody}`;
+        document.getElementById('bookingMsg').textContent = "Booking details sent to site owner via email!";
+        contactActions.innerHTML = '';
+      }
+      form.reset();
+      bookNowBtn.disabled = true;
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Show gallery when button is clicked
+    const viewGalleryBtn = document.getElementById('viewGalleryBtn');
+    const gallerySection = document.getElementById('gallery');
+    if (viewGalleryBtn && gallerySection) {
+        viewGalleryBtn.addEventListener('click', function() {
+            gallerySection.style.display = 'block';
+            viewGalleryBtn.style.display = 'none';
+            window.scrollTo({ top: gallerySection.offsetTop, behavior: 'smooth' });
+        });
+    }
+
+    // Gallery tab switching
+    const hairTab = document.getElementById('hairTab');
+    const nailTab = document.getElementById('nailTab');
+    const hairGallery = document.getElementById('hairGallery');
+    const nailGallery = document.getElementById('nailGallery');
+    if (hairTab && nailTab && hairGallery && nailGallery) {
+        hairTab.addEventListener('click', function() {
+            hairGallery.style.display = 'flex';
+            nailGallery.style.display = 'none';
+            hairTab.classList.add('active');
+            nailTab.classList.remove('active');
+        });
+        nailTab.addEventListener('click', function() {
+            hairGallery.style.display = 'none';
+            nailGallery.style.display = 'flex';
+            nailTab.classList.add('active');
+            hairTab.classList.remove('active');
+        });
+    }
+});
