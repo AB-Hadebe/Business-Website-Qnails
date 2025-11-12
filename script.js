@@ -116,14 +116,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       let msg = `Hi, I would like to book a ${service} on ${date}. My name is ${name}. My email is ${email}.`;
       if (contactMethod === 'whatsapp') {
-        window.open(`https://wa.me/27812821259?text=${encodeURIComponent(msg)}`, '_blank');
+        window.open(`https://wa.me/+27812821259?text=${encodeURIComponent(msg)}`, '_blank');
         document.getElementById('bookingMsg').textContent = "Booking submitted! Please send your WhatsApp message.";
         contactActions.innerHTML = '';
       } else {
         // Automatically open mail client to site owner's email with user's details
         const emailSubject = encodeURIComponent(`Booking Request - ${service}`);
         const emailBody = encodeURIComponent(`Hello,\n\nI would like to book:\n\nName: ${name}\nUser Email: ${email}\nService: ${service}\nDate: ${date}\n\nThank you!`);
-        window.location.href = `mailto:bookings@qibe.co.za?subject=${emailSubject}&body=${emailBody}`;
+        window.location.href = `mailto:ntshingilanomqibelo75@gmail.com?subject=${emailSubject}&body=${emailBody}`;
         document.getElementById('bookingMsg').textContent = "Booking details sent to site owner via email!";
         contactActions.innerHTML = '';
       }
