@@ -134,17 +134,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Set min date for booking to today
-window.addEventListener('DOMContentLoaded', function() {
+function setMinBookingDate() {
     var dateInput = document.getElementById('date');
     if (dateInput) {
         var today = new Date();
-        var yyyy = today.getFullYear();
-        var mm = String(today.getMonth() + 1).padStart(2, '0');
-        var dd = String(today.getDate()).padStart(2, '0');
-        var minDate = yyyy + '-' + mm + '-' + dd;
+        var minDate = today.toISOString().split('T')[0];
         dateInput.setAttribute('min', minDate);
     }
-});
+}
+
+window.addEventListener('DOMContentLoaded', setMinBookingDate);
+
+// Reapply min date after form reset
+var bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+    bookingForm.addEventListener('reset', setMinBookingDate);
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     // Show gallery when button is clicked
